@@ -10,7 +10,8 @@
     "dev": "run-p dev:*",
     "dev:tsc": "tsc --watch --preserveWatchOutput",
     "dev:esbuild": "pnpm run build --watch",
-    "dev:node": "node --watch dist/index.js"
+    "dev:node": "node --watch dist/index.js",
+    "help": "node dist/index.js --help"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "@modelcontextprotocol/sdk": "^1.17.5",
     "axios": "^1.11.0",
     "dotenv": "^17.2.2",
+    "express": "^5.1.0",
     "type-fest": "^4.41.0",
     "zod": "^3.25.76",
     "zod-to-json-schema": "^3.24.6"
@@ -27,6 +29,7 @@
   "devDependencies": {
     "@eslint/js": "^9.35.0",
     "@stylistic/eslint-plugin": "^5.3.1",
+    "@types/express": "^5.0.3",
     "@types/node": "^24.3.1",
     "@typescript-eslint/eslint-plugin": "^8.43.0",
     "@typescript-eslint/parser": "^8.43.0",
