@@ -15,6 +15,7 @@ const envSchema = z.object({
 
 export const MCP_SERVER_NAME = 'dsp-mcp';
 export const MCP_SERVER_VERSION = '0.1.0';
+export const MCP_ALLOWED_HOSTS = ['localhost', 'localhost:3067'];
 
 export const {
   DSP_BOOKING_BASE_URL,

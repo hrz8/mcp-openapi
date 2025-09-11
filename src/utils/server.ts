@@ -7,11 +7,10 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 
-import { securitySchemeDictionaries } from '../tools/security-scheme';
 import { zodToMcpJsonSchema } from '../helpers/zod-to-json-schema';
 import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from './config';
-import { executeApiTool } from '../executor';
-import { tools } from '../tools';
+import { securitySchemes } from '../tools/security-schemes';
+import { executeApiTool, tools } from '../tools';
 
 export function createServer(): Server {
   const server = new Server({
@@ -56,7 +55,7 @@ export function createServer(): Server {
       toolName,
       toolDefinition,
       toolArgs ?? {},
-      securitySchemeDictionaries,
+      securitySchemes,
     );
   });
 

@@ -1,6 +1,6 @@
 import { SecurityScheme } from './types';
 
-export const securitySchemeDictionaries: Record<string, SecurityScheme> = {
+export const securitySchemes: Record<string, SecurityScheme> = {
   HeaderApiToken: {
     description: 'API token is required in header to access the API.',
     type: 'oauth2',

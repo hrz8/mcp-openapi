@@ -2,7 +2,7 @@
 
 PoC for DSP Booking flow through MCP Server.
 
-## MCP Config
+## MCP Config stdio
 
 ```json
 {
@@ -19,6 +19,19 @@ PoC for DSP Booking flow through MCP Server.
         "DSP_OAUTH_TOKEN_URL": "https://example.com/security/oauth2/token"
       },
       "type": "stdio"
+    }
+  }
+}
+```
+
+## MCP Config HTTP
+
+```json
+{
+  "servers": {
+    "dspServer": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "http://localhost:3067/mcp"]
     }
   }
 }

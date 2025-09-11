@@ -5,10 +5,10 @@ import {
 import { JsonObject } from 'type-fest';
 import { ZodError } from 'zod';
 
-import { DSP_APIM_SUBSCRIPTION_KEY, DSP_BOOKING_API_VERSION, DSP_OAUTH_CLIENT_SECRET, DSP_BOOKING_BASE_URL, DSP_OAUTH_CLIENT_ID, DSP_OAUTH_TOKEN_URL } from './utils/config';
-import { McpToolDefinition, SecurityScheme } from './tools/types';
-import { formatAxiosError } from './helpers/axios';
-import { acquireOAuth2Token } from './utils/oauth';
+import { DSP_APIM_SUBSCRIPTION_KEY, DSP_BOOKING_API_VERSION, DSP_OAUTH_CLIENT_SECRET, DSP_BOOKING_BASE_URL, DSP_OAUTH_CLIENT_ID, DSP_OAUTH_TOKEN_URL } from '../utils/config';
+import { McpToolDefinition, SecurityScheme } from './types';
+import { formatAxiosError } from '../helpers/axios';
+import { acquireOAuth2Token } from '../utils/oauth';
 
 type RequestConfig = {
   urlPath: string;
