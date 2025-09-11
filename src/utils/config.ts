@@ -12,6 +12,10 @@ const envSchema = z.object({
   DSP_OAUTH_TOKEN_URL: z.string(),
 });
 
+
+export const MCP_SERVER_NAME = 'dsp-mcp';
+export const MCP_SERVER_VERSION = '0.1.0';
+
 export const {
   DSP_BOOKING_BASE_URL,
   DSP_BOOKING_API_VERSION,
