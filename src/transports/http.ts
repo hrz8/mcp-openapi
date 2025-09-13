@@ -1,3 +1,5 @@
+import http from 'node:http';
+
 import express from 'express';
 import cors from 'cors';
 
@@ -27,6 +29,13 @@ function registerRoutes(app: express.Express, transports: TransportMap) {
   app.delete('/mcp', serverToClientHandler(transports));
 }
 
+function listener(port: number) {
+  return () => {
+    console.info(`${MCP_SERVER_NAME} MCP Server (v${MCP_SERVER_VERSION}) running on HTTP port ${port}, proxying API at ${DSP_BOOKING_BASE_URL}`);
+    console.info(`Health check available at: http://localhost:${port}/health`);
+    console.info(`MCP endpoint available at: http://localhost:${port}/mcp`);
+  };
+}
 
 export async function startHttpServer(port: number) {
   const app = express();
@@ -46,9 +55,7 @@ export async function startHttpServer(port: number) {
   const transports: TransportMap = new Map();
   registerRoutes(app, transports);
 
-  app.listen(port, () => {
-    console.error(`${MCP_SERVER_NAME} MCP Server (v${MCP_SERVER_VERSION}) running on HTTP port ${port}, proxying API at ${DSP_BOOKING_BASE_URL}`);
-    console.error(`Health check available at: http://localhost:${port}/health`);
-    console.error(`MCP endpoint available at: http://localhost:${port}/mcp`);
-  });
+  const server = http.createServer(app);
+
+  server.listen(port, listener(port));
 }
