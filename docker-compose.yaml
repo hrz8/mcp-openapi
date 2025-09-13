@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  dsp-mcpserver:
+    build: .
+    ports:
+      - "3067:3067"
+    env_file: .env
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "const http = require('http'); const req = http.request({hostname: 'localhost', port: 3067, path: '/health', timeout: 2000}, (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }); req.on('error', () => process.exit(1)); req.end();",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

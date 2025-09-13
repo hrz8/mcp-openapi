@@ -3,8 +3,8 @@ import http from 'node:http';
 import express from 'express';
 import cors from 'cors';
 
-import { DSP_BOOKING_BASE_URL, MCP_SERVER_VERSION, MCP_SERVER_NAME } from '../utils/config';
 import { clientToServerHandler, serverToClientHandler } from './routes';
+import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from '../utils/config';
 import { TransportMap } from './types';
 
 
@@ -31,7 +31,7 @@ function registerRoutes(app: express.Express, transports: TransportMap) {
 
 function listener(port: number) {
   return () => {
-    console.info(`${MCP_SERVER_NAME} MCP Server (v${MCP_SERVER_VERSION}) running on HTTP port ${port}, proxying API at ${DSP_BOOKING_BASE_URL}`);
+    console.info(`${MCP_SERVER_NAME} MCP Server (v${MCP_SERVER_VERSION}) running on HTTP port ${port}`);
     console.info(`Health check available at: http://localhost:${port}/health`);
     console.info(`MCP endpoint available at: http://localhost:${port}/mcp`);
   };
@@ -55,7 +55,5 @@ export async function startHttpServer(port: number) {
   const transports: TransportMap = new Map();
   registerRoutes(app, transports);
 
-  const server = http.createServer(app);
-
-  server.listen(port, listener(port));
+  http.createServer(app).listen(port, listener(port));
 }

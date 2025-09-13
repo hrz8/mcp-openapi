@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import { z } from 'zod';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const envSchema = z.object({
   DSP_BOOKING_BASE_URL: z.string(),

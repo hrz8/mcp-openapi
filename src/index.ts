@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from './utils/config';
 import { startStdioServer } from './transports/stdio';
 import { startHttpServer } from './transports/http';
