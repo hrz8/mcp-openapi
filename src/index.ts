@@ -3,6 +3,9 @@
 import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from './utils/config';
 import { startStdioServer } from './transports/stdio';
 import { startHttpServer } from './transports/http';
+import { TransportMap } from './transports/types';
+
+let stramableHttpTransports: TransportMap;
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -77,7 +80,8 @@ async function main() {
     if (config.transport === 'stdio') {
       await startStdioServer();
     } else if (config.transport === 'http') {
-      await startHttpServer(config.port);
+      stramableHttpTransports = new Map();
+      await startHttpServer(config.port, stramableHttpTransports);
     }
   } catch (error) {
     console.error('Error during server startup:', error);
@@ -86,7 +90,7 @@ async function main() {
 }
 
 async function cleanup() {
-  console.error('Shutting down MCP server...');
+  console.info('Shutting down MCP server...');
   process.exit(0);
 }
 

@@ -28,7 +28,7 @@ export async function acquireOAuth2Token(schemeName: string, scheme: SecuritySch
     const now = Date.now();
 
     if (cachedToken && cachedToken.expiresAt > now) {
-      console.error(`Using cached OAuth2 token for '${schemeName}' (expires in ${Math.floor((cachedToken.expiresAt - now) / 1000)} seconds)`);
+      console.info(`Using cached OAuth2 token for '${schemeName}' (expires in ${Math.floor((cachedToken.expiresAt - now) / 1000)} seconds)`);
       return cachedToken.token;
     }
 

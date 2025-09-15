@@ -1,11 +1,11 @@
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from '../utils/config';
-import { createServer } from '../utils/server';
+import { createMcpServer } from '../utils/mcp-server';
 
 export async function startStdioServer() {
-  const server = createServer();
+  const mcpServer = createMcpServer();
   const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error(`${MCP_SERVER_NAME} MCP Server (v${MCP_SERVER_VERSION}) running on stdio`);
+  await mcpServer.connect(transport);
+  console.info(`${MCP_SERVER_NAME} MCP Server (v${MCP_SERVER_VERSION}) running on stdio`);
 }

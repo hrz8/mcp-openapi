@@ -201,7 +201,7 @@ async function applyApiKeySecurity(
 
   if (apiKey && securityScheme.in === 'header') {
     headers.set(securityScheme.name, apiKey);
-    console.error(`Applied API key '${schemeName}' in header '${securityScheme.name}'`);
+    console.info(`Applied API key '${schemeName}' in header '${securityScheme.name}'`);
   }
 }
 
@@ -213,15 +213,15 @@ async function applyOAuth2Security(
 ): Promise<void> {
   if (!securityScheme.flows?.clientCredentials) {return;}
 
-  console.error(`Attempting to acquire OAuth token for '${schemeName}'`);
+  console.info(`Attempting to acquire OAuth token for '${schemeName}'`);
   const token = await acquireOAuth2Token(schemeName, securityScheme);
 
   if (token && securityScheme.in === 'header') {
     headers.set(securityScheme.name, token);
-    console.error(`Applied OAuth2 token for '${schemeName}' in header '${securityScheme.name}'`);
+    console.info(`Applied OAuth2 token for '${schemeName}' in header '${securityScheme.name}'`);
 
     if (scopes.length > 0) {
-      console.error(`Requested scopes: ${scopes.join(', ')}`);
+      console.info(`Requested scopes: ${scopes.join(', ')}`);
     }
   }
 }
@@ -333,7 +333,7 @@ export async function executeApiTool(
     };
 
     // 5. Execute request
-    console.error(`Executing tool "${toolName}": ${axiosConfig.method} ${axiosConfig.url}`);
+    console.info(`Executing tool "${toolName}": ${axiosConfig.method} ${axiosConfig.url}`);
     const response = await axios(axiosConfig);
 
     // 6. Format and return response

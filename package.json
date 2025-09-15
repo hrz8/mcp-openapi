@@ -8,7 +8,9 @@
   },
   "scripts": {
     "lint": "tsc",
-    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=cjs --sourcemap",
+    "build": "rimraf dist && esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=cjs --sourcemap",
+    "build:lambda": "esbuild src/lambda.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=lambda/index.js",
+    "zip:lambda": "rimraf lambda-out.zip && cd lambda && zip -r -9 ../lambda-out.zip ./* && cd ..",
     "start": "node dist/index.js",
     "start:http": "node dist/index.js --transport http",
     "dev": "run-p dev:*",
@@ -43,6 +45,7 @@
     "eslint": "^9.35.0",
     "eslint-plugin-perfectionist": "^4.15.0",
     "npm-run-all": "^4.1.5",
+    "rimraf": "^6.0.1",
     "typescript": "^5.9.2"
   }
 }

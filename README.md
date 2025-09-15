@@ -6,14 +6,14 @@ PoC for DSP Booking flow through MCP Server.
 
 ```bash
 $ pnpm run build
-$ pnpm run start
 ```
 
 ```json
 {
   "servers": {
+    // use `mcpServers` for Claude
     "dsp-server": {
-      "type": "stdio",
+      "type": "stdio", // no need in claude_desktop_config.json
       "command": "node",
       "args": ["~/dsp-mcpserver/dist/index.js"],
       "env": {
@@ -29,7 +29,7 @@ $ pnpm run start
 }
 ```
 
-## MCP Config HTTP
+## MCP Config HTTP VSCode
 
 ```bash
 $ pnpm run build
@@ -41,9 +41,36 @@ $ docker-compose up --build -d
 ```json
 {
   "servers": {
+    // use `mcpServers` for Claude
     "dsp-server": {
       "type": "http",
       "url": "http://localhost:3067/mcp"
+    }
+  }
+}
+```
+
+## MCP Config HTTP Claude Desktop (Required HTTPS)
+
+### Option 1
+
+Use a `Custom Connector` settings in the Claude Settings
+
+```
+Name: DSP Server
+Remote MCP Server URL: https://your-host.or.lambda.url/mcp
+```
+
+### Option 2
+
+Use `mcp-remote` in your `claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "dsp-server": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://your-host.or.lambda.url/mcp"]
     }
   }
 }
@@ -57,10 +84,30 @@ $ docker build -t dsp-mcpserver:stdio . -f Dockerfile.stdio
 
 ```json
 {
-  "dsp-server": {
-    "type": "stdio",
-    "command": "docker",
-    "args": ["run", "-i", "--rm", "dsp-mcpserver:stdio"]
+  "servers": {
+    // use `mcpServers` for Claude
+    "dsp-server": {
+      "type": "stdio", // no need in claude_desktop_config.json
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "DSP_BOOKING_BASE_URL=https://example.com/booking",
+        "-e",
+        "DSP_BOOKING_API_VERSION=v1",
+        "-e",
+        "DSP_APIM_SUBSCRIPTION_KEY=xxx",
+        "-e",
+        "DSP_OAUTH_CLIENT_ID=xxx",
+        "-e",
+        "DSP_OAUTH_CLIENT_SECRET=xxx",
+        "-e",
+        "DSP_OAUTH_TOKEN_URL=https://example.com/security/oauth2/token",
+        "dsp-mcpserver:stdio"
+      ]
+    }
   }
 }
 ```

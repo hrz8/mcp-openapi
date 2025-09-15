@@ -12,7 +12,7 @@ import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from './config';
 import { securitySchemes } from '../tools/security-schemes';
 import { executeApiTool, tools } from '../tools';
 
-export function createServer(): Server {
+export function createMcpServer(): Server {
   const server = new Server({
     name: MCP_SERVER_NAME,
     version: MCP_SERVER_VERSION,
