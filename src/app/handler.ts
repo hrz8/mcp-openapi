@@ -4,9 +4,10 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
 import express from 'express';
 
-import { createMcpServer } from '../utils/mcp-server';
-import { MCP_ALLOWED_HOSTS } from '../utils/config';
-import { TransportMap } from '../transports/types';
+import type { TransportMap } from '../transports/types.js';
+
+import { createMcpServer } from '../utils/mcp-server.js';
+import { MCP_ALLOWED_HOSTS } from '../utils/config.js';
 
 export async function handleStatelessRequest(
   req: express.Request,

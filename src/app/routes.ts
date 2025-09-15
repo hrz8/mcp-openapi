@@ -1,8 +1,9 @@
 import express from 'express';
 
-import { handleStatelessRequest, handleStatefulRequest } from './handler';
-import { TransportMap } from '../transports/types';
-import { RUN_IN_LAMBDA } from '../utils/config';
+import type { TransportMap } from '../transports/types.js';
+
+import { handleStatelessRequest, handleStatefulRequest } from './handler.js';
+import { RUN_IN_LAMBDA } from '../utils/config.js';
 
 export function clientToServerHandler(transports: TransportMap): express.RequestHandler {
   return async (req, res) => {

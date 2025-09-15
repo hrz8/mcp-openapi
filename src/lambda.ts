@@ -1,6 +1,7 @@
-import { RUN_IN_LAMBDA, AWS_LWA_PORT } from './utils/config';
-import { TransportMap } from './transports/types';
-import { createExpressApp } from './app';
+import type { TransportMap } from './transports/types.js';
+
+import { RUN_IN_LAMBDA, AWS_LWA_PORT } from './utils/config.js';
+import { createExpressApp } from './app/index.js';
 
 const transports: TransportMap = new Map(); // unused since no persistence storage in the stateless/lambda mode
 const app = createExpressApp(transports);

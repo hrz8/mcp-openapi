@@ -1,6 +1,6 @@
 import { ZodSchema, z } from 'zod';
 
-import { InitializeBookingSchema, FlightSearchSchema } from './input-schema';
+import { InitializeBookingSchema, FlightSearchSchema } from './input-schema.js';
 
 export type McpToolDefinition = {
   name: string;

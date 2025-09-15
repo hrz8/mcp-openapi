@@ -1,8 +1,9 @@
 import http from 'node:http';
 
-import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from '../utils/config';
-import { createExpressApp } from '../app';
-import { TransportMap } from './types';
+import type { TransportMap } from './types.js';
+
+import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from '../utils/config.js';
+import { createExpressApp } from '../app/index.js';
 
 function listener(port: number) {
   return () => {

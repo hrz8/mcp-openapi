@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from './utils/config';
-import { startStdioServer } from './transports/stdio';
-import { startHttpServer } from './transports/http';
-import { TransportMap } from './transports/types';
+import type { TransportMap } from './transports/types.js';
+
+import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from './utils/config.js';
+import { startStdioServer } from './transports/stdio.js';
+import { startHttpServer } from './transports/http.js';
 
 let stramableHttpTransports: TransportMap;
 

@@ -1,7 +1,13 @@
 import axios from 'axios';
 
-import { DSP_APIM_SUBSCRIPTION_KEY, DSP_BOOKING_API_VERSION, DSP_OAUTH_CLIENT_SECRET, DSP_OAUTH_CLIENT_ID, DSP_OAUTH_TOKEN_URL } from './config';
-import { SecurityScheme } from '../tools/types';
+import {
+  DSP_APIM_SUBSCRIPTION_KEY,
+  DSP_BOOKING_API_VERSION,
+  DSP_OAUTH_CLIENT_SECRET,
+  DSP_OAUTH_CLIENT_ID,
+  DSP_OAUTH_TOKEN_URL,
+} from './config.js';
+import { SecurityScheme } from '../tools/types.js';
 
 declare global {
   var __oauthTokenCache: {

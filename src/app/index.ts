@@ -1,1 +1,1 @@
-export { createExpressApp } from './app';
+export { createExpressApp } from './app.js';

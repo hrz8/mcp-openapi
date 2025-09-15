@@ -7,10 +7,10 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 
-import { zodToMcpJsonSchema } from '../helpers/zod-to-json-schema';
-import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from './config';
-import { securitySchemes } from '../tools/security-schemes';
-import { executeApiTool, tools } from '../tools';
+import { zodToMcpJsonSchema } from '../helpers/zod-to-json-schema.js';
+import { MCP_SERVER_VERSION, MCP_SERVER_NAME } from './config.js';
+import { securitySchemes } from '../tools/security-schemes.js';
+import { executeApiTool, tools } from '../tools/index.js';
 
 export function createMcpServer(): Server {
   const server = new Server({

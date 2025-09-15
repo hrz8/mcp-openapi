@@ -1,9 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 
-import { MCP_SERVER_VERSION, MCP_SERVER_NAME, RUN_IN_LAMBDA } from '../utils/config';
-import { clientToServerHandler, serverToClientHandler } from './routes';
-import { TransportMap } from '../transports/types';
+import type { TransportMap } from '../transports/types.js';
+
+import { MCP_SERVER_VERSION, MCP_SERVER_NAME, RUN_IN_LAMBDA } from '../utils/config.js';
+import { clientToServerHandler, serverToClientHandler } from './routes.js';
 
 const MCP_PATH = '/mcp';
 

@@ -1,5 +1,6 @@
-import { InitializeBookingSchema, FlightSearchSchema } from './input-schema';
-import { McpToolDefinition } from './types';
+import type { McpToolDefinition } from './types.js';
+
+import { InitializeBookingSchema, FlightSearchSchema } from './input-schema.js';
 
 export const tools: Map<string, McpToolDefinition> = new Map([
   [

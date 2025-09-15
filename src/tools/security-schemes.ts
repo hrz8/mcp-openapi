@@ -1,4 +1,4 @@
-import { SecurityScheme } from './types';
+import type { SecurityScheme } from './types.js';
 
 export const securitySchemes: Record<string, SecurityScheme> = {
   HeaderApiToken: {

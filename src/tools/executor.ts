@@ -1,14 +1,20 @@
 import axios, { type AxiosRequestConfig, AxiosResponse, AxiosHeaders } from 'axios';
-import {
-  type CallToolResult,
-} from '@modelcontextprotocol/sdk/types.js';
 import { JsonObject } from 'type-fest';
 import { ZodError } from 'zod';
 
-import { DSP_APIM_SUBSCRIPTION_KEY, DSP_BOOKING_API_VERSION, DSP_OAUTH_CLIENT_SECRET, DSP_BOOKING_BASE_URL, DSP_OAUTH_CLIENT_ID, DSP_OAUTH_TOKEN_URL } from '../utils/config';
-import { McpToolDefinition, SecurityScheme } from './types';
-import { formatAxiosError } from '../helpers/axios';
-import { acquireOAuth2Token } from '../utils/oauth';
+import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
+import type { McpToolDefinition, SecurityScheme } from './types.js';
+
+import {
+  DSP_APIM_SUBSCRIPTION_KEY,
+  DSP_BOOKING_API_VERSION,
+  DSP_OAUTH_CLIENT_SECRET,
+  DSP_BOOKING_BASE_URL,
+  DSP_OAUTH_CLIENT_ID,
+  DSP_OAUTH_TOKEN_URL,
+} from '../utils/config.js';
+import { formatAxiosError } from '../helpers/axios.js';
+import { acquireOAuth2Token } from '../utils/oauth.js';
 
 type RequestConfig = {
   urlPath: string;
