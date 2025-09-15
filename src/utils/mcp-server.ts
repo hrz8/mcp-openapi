@@ -36,28 +36,31 @@ export function createMcpServer(): Server {
     };
   });
 
-  server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest): Promise<CallToolResult> => {
-    const { name: toolName, arguments: toolArgs } = request.params;
-    const toolDefinition = tools.get(toolName);
+  server.setRequestHandler(
+    CallToolRequestSchema,
+    async (request: CallToolRequest): Promise<CallToolResult> => {
+      const { name: toolName, arguments: toolArgs } = request.params;
+      const toolDefinition = tools.get(toolName);
 
-    if (!toolDefinition) {
-      return {
-        content: [
-          {
-            type: 'text',
-            text: `Error: Unknown tool requested: ${toolName}`,
-          },
-        ],
-      };
-    }
+      if (!toolDefinition) {
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Error: Unknown tool requested: ${toolName}`,
+            },
+          ],
+        };
+      }
 
-    return await executeApiTool(
-      toolName,
-      toolDefinition,
-      toolArgs ?? {},
-      securitySchemes,
-    );
-  });
+      return await executeApiTool(
+        toolName,
+        toolDefinition,
+        toolArgs ?? {},
+        securitySchemes,
+      );
+    },
+  );
 
   return server;
 }

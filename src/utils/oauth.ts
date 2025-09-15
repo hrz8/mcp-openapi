@@ -18,7 +18,10 @@ declare global {
   };
 }
 
-export async function acquireOAuth2Token(schemeName: string, scheme: SecurityScheme): Promise<string | null | undefined> {
+export async function acquireOAuth2Token(
+  schemeName: string,
+  scheme: SecurityScheme,
+): Promise<string | null | undefined> {
   try {
     if (!DSP_OAUTH_CLIENT_ID || !DSP_OAUTH_CLIENT_SECRET) {
       console.error(`Missing client credentials for OAuth2 scheme '${schemeName}'`);

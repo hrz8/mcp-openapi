@@ -8,12 +8,14 @@
     "dsp-mcpserver": "dist/index.js"
   },
   "scripts": {
-    "lint": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
     "build": "rimraf dist && esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=cjs --sourcemap",
-    "build:lambda": "esbuild src/lambda.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=lambda/index.js",
-    "zip:lambda": "rimraf lambda-out.zip && cd lambda && zip -r -9 ../lambda-out.zip ./* && cd ..",
+    "build:lambda": "rimraf lambda && esbuild src/lambda.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=lambda/index.js && cp lambda-runner.sh lambda/run.sh",
+    "zip:lambda": "rimraf lambda.zip && cd lambda && zip -r -9 ../lambda.zip ./* && cd ..",
     "start": "node dist/index.js",
     "start:http": "node dist/index.js --transport http",
+    "dev": "tsx --watch src/index.ts",
     "help": "node dist/index.js --help"
   },
   "keywords": [],
@@ -42,6 +44,7 @@
     "eslint": "^9.35.0",
     "eslint-plugin-perfectionist": "^4.15.0",
     "rimraf": "^6.0.1",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   }
 }

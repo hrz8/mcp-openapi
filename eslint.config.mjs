@@ -53,6 +53,14 @@ export default [
       }],
 
       // Stylistic rules
+      '@stylistic/max-len': ['warn', {
+        code: 100,
+        tabWidth: 2,
+        ignoreUrls: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreComments: true,
+      }],
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/indent': ['error', 2, {
         SwitchCase: 1,
@@ -129,7 +137,15 @@ export default [
       // Console rules
       'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
 
-      // Same stylistic rules for JS files
+      // Stylistic rules for JS files
+      '@stylistic/max-len': ['warn', {
+        code: 100,
+        tabWidth: 2,
+        ignoreUrls: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreComments: true,
+      }],
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/indent': ['error', 2],
       '@stylistic/quotes': ['error', 'single', {
@@ -162,6 +178,7 @@ export default [
       'node_modules/**',
       'dist/**',
       'build/**',
+      'lambda/**.js*',
       '*.min.js',
       'coverage/**',
     ],

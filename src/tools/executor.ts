@@ -326,7 +326,11 @@ export async function executeApiTool(
     }
 
     if (securityContext.appliedSecurity) {
-      await applySecurity(requestConfig.headers, securityContext.appliedSecurity, securityRequirementDictionaries);
+      await applySecurity(
+        requestConfig.headers,
+        securityContext.appliedSecurity,
+        securityRequirementDictionaries,
+      );
     }
 
     // 4. Create axios configuration

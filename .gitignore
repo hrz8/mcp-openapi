@@ -2,5 +2,5 @@
 node_modules
 dist
 .env
-lambda/*.js*
-lambda*.zip
+lambda
+lambda.zip
