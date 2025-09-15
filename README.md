@@ -10,8 +10,8 @@ $ pnpm run build
 
 ```json
 {
+  // use `mcpServers` for Claude
   "servers": {
-    // use `mcpServers` for Claude
     "dsp-server": {
       "type": "stdio", // no need in claude_desktop_config.json
       "command": "node",
@@ -29,7 +29,9 @@ $ pnpm run build
 }
 ```
 
-## MCP Config HTTP VSCode
+## MCP Config HTTP VSCode (Able to start locally or even MCP Remote)
+
+Using VSCode Agent we are able to use local MCP Remote or even public MCP Remote
 
 ```bash
 $ pnpm run build
@@ -40,17 +42,19 @@ $ docker-compose up --build -d
 
 ```json
 {
+  // use `mcpServers` for Claude
   "servers": {
-    // use `mcpServers` for Claude
     "dsp-server": {
       "type": "http",
-      "url": "http://localhost:3067/mcp"
+      "url": "http://localhost:3067/mcp" // or https://your-host.or.lambda.url/mcp if publicly accessibile
     }
   }
 }
 ```
 
 ## MCP Config HTTP Claude Desktop (Required HTTPS)
+
+Make sure you have deploy the server to the public-accessible endpoint e.g., `https://your-host.or.lambda.url/mcp`
 
 ### Option 1
 
@@ -84,8 +88,8 @@ $ docker build -t dsp-mcpserver:stdio . -f Dockerfile.stdio
 
 ```json
 {
+  // use `mcpServers` for Claude
   "servers": {
-    // use `mcpServers` for Claude
     "dsp-server": {
       "type": "stdio", // no need in claude_desktop_config.json
       "command": "docker",
