@@ -91,7 +91,7 @@ async function main() {
 }
 
 async function cleanup() {
-  console.info('Shutting down MCP server...');
+  console.info('Shutting down server...');
   process.exit(0);
 }
 

@@ -14,3 +14,17 @@ if (RUN_IN_LAMBDA) {
   console.error('Cannot proceed inside non-lambda environment');
   process.exit(1);
 }
+
+async function cleanup() {
+  console.info('Shutting down server...');
+  process.exit(0);
+}
+
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+  cleanup();
+});
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  cleanup();
+});
