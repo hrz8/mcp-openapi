@@ -7,7 +7,7 @@ import {
   DSP_OAUTH_CLIENT_ID,
   DSP_OAUTH_TOKEN_URL,
 } from './config.js';
-import { SecurityScheme } from '../tools/types.js';
+import { SecurityScheme } from '../mcp/tools/types.js';
 
 declare global {
   var __oauthTokenCache: {

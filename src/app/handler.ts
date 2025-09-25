@@ -6,7 +6,7 @@ import express from 'express';
 
 import type { TransportMap } from '../transports/types.js';
 
-import { createMcpServer } from '../utils/mcp-server.js';
+import { createMcpServer } from '../mcp/server/server.js';
 import { MCP_ALLOWED_HOSTS } from '../utils/config.js';
 
 export async function handleStatelessRequest(

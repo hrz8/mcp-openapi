@@ -12,9 +12,9 @@ import {
   DSP_BOOKING_BASE_URL,
   DSP_OAUTH_CLIENT_ID,
   DSP_OAUTH_TOKEN_URL,
-} from '../utils/config.js';
-import { formatAxiosError } from '../helpers/axios.js';
-import { acquireOAuth2Token } from '../utils/oauth.js';
+} from '../../utils/config.js';
+import { formatAxiosError } from '../../helpers/axios.js';
+import { acquireOAuth2Token } from '../../utils/oauth.js';
 
 type RequestConfig = {
   urlPath: string;
