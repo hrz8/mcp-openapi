@@ -1,7 +1,4 @@
-import * as dotenv from 'dotenv';
 import { z } from 'zod';
-
-dotenv.config({ quiet: true });
 
 const envSchema = z.object({
   RUN_IN_LAMBDA: z

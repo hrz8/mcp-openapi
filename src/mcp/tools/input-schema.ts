@@ -59,8 +59,7 @@ export const InitializeBookingSchema = z.object({
 export const FlightSearchSchema = z.object({
   'session-token': z.string()
     .min(1)
-    .describe('Required authentication token obtained from the initialization step. This token is generated during booking initialization and returned in the response headers (look for "session-token" header). The token maintains booking context and enables flight search functionality. WITHOUT this token, flight searches will fail.'),
-
+    .describe('Required authentication token obtained from the initialization step. This token is generated during booking initialization and returned in the response headers (look for "Session-Token" header). The token maintains booking context and enables flight search functionality. WITHOUT this token, flight searches will fail.'),
   requestBody: FlightSearchBodySchema
     .describe('Flight search parameters for finding available flights. Can be identical to initialization parameters or refined based on customer preferences.'),
 }).describe('STEP 2: Perform actual flight search using session token from initialization. This endpoint searches for available flights matching the criteria and returns flight options with pricing and schedules.');

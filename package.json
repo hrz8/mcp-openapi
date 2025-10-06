@@ -10,7 +10,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "build": "rimraf dist && esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=cjs --sourcemap",
+    "build": "rimraf dist && esbuild src/index.ts --bundle --sourcemap --platform=node --packages=external --outfile=dist/index.js --format=esm",
     "build:lambda": "rimraf lambda && esbuild src/lambda.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=lambda/index.js && cp lambda-runner.sh lambda/run.sh",
     "zip:lambda": "rimraf lambda.zip && cd lambda && zip -r -9 ../lambda.zip ./* && cd ..",
     "start": "node dist/index.js",
@@ -23,10 +23,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@aws-sdk/client-bedrock-agent-runtime": "^3.899.0",
     "@modelcontextprotocol/sdk": "^1.17.5",
     "axios": "^1.11.0",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "type-fest": "^4.41.0",
     "zod": "^3.25.76",
