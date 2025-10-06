@@ -233,36 +233,59 @@ async function applyOAuth2Security(
 }
 
 // Response formatter
-function formatResponse(response: AxiosResponse): CallToolResult {
+function formatResponse(
+  response: AxiosResponse,
+  definition: McpToolDefinition,
+): CallToolResult {
   const content: CallToolResult['content'] = [];
-  let responseText = '';
+
   const contentType = response.headers['content-type']?.toLowerCase() || '';
-  const sessionToken = response.headers['session-token'];
-  if (sessionToken) {
-    content.push({
-      type: 'text',
-      text: `Session-Token: '${sessionToken}'`,
-    });
-  }
 
   if (contentType.includes('application/json') && typeof response.data === 'object' && response.data !== null) {
-    try {
-      responseText = JSON.stringify(response.data, null, 2);
-    } catch (err) {
-      responseText = `[Stringify Error]: ${String(err)}`;
+    if (definition.serializer) {
+      try {
+        const serializedOutput = definition.serializer(response);
+        content.push({
+          type: 'text',
+          text: serializedOutput,
+        });
+      } catch (serializationError) {
+        console.warn(`Serialization failed for ${definition.name}:`, serializationError);
+        content.push({
+          type: 'text',
+          text: `Warning - serialization error, showing raw response:\n\n${JSON.stringify(response.data, null, 2)}`,
+        });
+      }
+    } else {
+      try {
+        const responseText = JSON.stringify(response.data, null, 2);
+        content.push({
+          type: 'text',
+          text: `API Response (Status: ${response.status}):\n${responseText}`,
+        });
+      } catch (err) {
+        content.push({
+          type: 'text',
+          text: `[Stringify Error]: ${String(err)}`,
+        });
+      }
     }
   } else if (typeof response.data === 'string') {
-    responseText = response.data;
+    content.push({
+      type: 'text',
+      text: response.data,
+    });
   } else if (response.data !== undefined && response.data !== null) {
-    responseText = String(response.data);
+    content.push({
+      type: 'text',
+      text: String(response.data),
+    });
   } else {
-    responseText = `(Status: ${response.status} - No body content)`;
+    content.push({
+      type: 'text',
+      text: `(Status: ${response.status} - No body content)`,
+    });
   }
-
-  content.push({
-    type: 'text',
-    text: `API Response (Status: ${response.status}):\n${responseText}`,
-  });
 
   return {
     content,
@@ -346,8 +369,8 @@ export async function executeApiTool(
     console.info(`Executing tool "${toolName}": ${axiosConfig.method} ${axiosConfig.url}`);
     const response = await axios(axiosConfig);
 
-    // 6. Format and return response
-    return formatResponse(response);
+    // 6. Format and return response - pass definition instead of toolName
+    return formatResponse(response, definition);
   } catch (error) {
     return formatError(toolName, error);
   }
